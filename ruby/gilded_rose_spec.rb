@@ -25,6 +25,12 @@ describe GildedRose do
         GildedRose.new([aged_brie]).update_quality()
         expect(aged_brie.quality).to eq(50)
       end
+
+      it "increases quality twice as fast after sell by date" do
+        aged_brie = Item.new('Aged Brie', 0, 15)
+        GildedRose.new([aged_brie]).update_quality()
+        expect(aged_brie.quality).to eq(17)
+      end
     end
   end
 end
