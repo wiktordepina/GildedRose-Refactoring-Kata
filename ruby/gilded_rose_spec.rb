@@ -5,10 +5,19 @@ describe GildedRose do
   describe "#update_quality" do
 
     context "Aged Brie" do
+
+      let (:aged_brie) {
+        Item.new('Aged Brie', 10, 10)
+      }
+
       it "increases in quality at the end of each day" do
-        aged_brie = Item.new('Aged Brie', 10, 10)
         GildedRose.new([aged_brie]).update_quality()
         expect(aged_brie.quality).to eq(11)
+      end
+
+      it "decreases sell by date at the end of each day" do
+        GildedRose.new([aged_brie]).update_quality()
+        expect(aged_brie.sell_in).to eq(9)
       end
     end
 
