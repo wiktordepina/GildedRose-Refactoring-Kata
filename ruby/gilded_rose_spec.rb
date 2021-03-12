@@ -6,68 +6,73 @@ describe GildedRose do
 
     context "Aged Brie" do
 
-      let (:aged_brie) {
+      let(:aged_brie) {
         Item.new('Aged Brie', 10, 10)
       }
 
       it "increases in quality at the end of each day" do
-        GildedRose.new([aged_brie]).update_quality()
+        GildedRose.new([aged_brie]).update_quality
         expect(aged_brie.quality).to eq(11)
       end
 
       it "decreases sell by date at the end of each day" do
-        GildedRose.new([aged_brie]).update_quality()
+        GildedRose.new([aged_brie]).update_quality
         expect(aged_brie.sell_in).to eq(9)
       end
 
       it "never increases the quality to over 50" do
         aged_brie = Item.new('Aged Brie', 10, 50)
-        GildedRose.new([aged_brie]).update_quality()
+        GildedRose.new([aged_brie]).update_quality
         expect(aged_brie.quality).to eq(50)
       end
 
       it "increases quality twice as fast at sell by date" do
         aged_brie = Item.new('Aged Brie', 0, 15)
-        GildedRose.new([aged_brie]).update_quality()
+        GildedRose.new([aged_brie]).update_quality
         expect(aged_brie.quality).to eq(17)
       end
 
       it "increases quality twice as fast after sell by date" do
         aged_brie = Item.new('Aged Brie', -1, 15)
-        GildedRose.new([aged_brie]).update_quality()
+        GildedRose.new([aged_brie]).update_quality
         expect(aged_brie.quality).to eq(17)
       end
     end
 
     context "Backstage passes" do
       it "increases in Quality by 1 when there are 11 days left" do
-        bakstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 11, 15)
-        GildedRose.new([bakstage_passes]).update_quality()
-        expect(bakstage_passes.quality).to eq(16)
+        backstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 11, 15)
+        GildedRose.new([backstage_passes]).update_quality
+        expect(backstage_passes.quality).to eq(16)
       end
 
       it "increases in Quality by 2 when there are 10-6 days left" do
-        bakstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 10, 15)
-        GildedRose.new([bakstage_passes]).update_quality()
-        expect(bakstage_passes.quality).to eq(17)
+        backstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 10, 15)
+        GildedRose.new([backstage_passes]).update_quality
+        expect(backstage_passes.quality).to eq(17)
       end
 
       it "increases in Quality by 2 when there are 6 days left" do
-        bakstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 6, 15)
-        GildedRose.new([bakstage_passes]).update_quality()
-        expect(bakstage_passes.quality).to eq(17)
+        backstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 6, 15)
+        GildedRose.new([backstage_passes]).update_quality
+        expect(backstage_passes.quality).to eq(17)
       end
 
       it "increases in Quality by 3 when there are 5 days" do
-        bakstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 5, 15)
-        GildedRose.new([bakstage_passes]).update_quality()
-        expect(bakstage_passes.quality).to eq(18)
+        backstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 5, 15)
+        GildedRose.new([backstage_passes]).update_quality
+        expect(backstage_passes.quality).to eq(18)
       end
 
       it "increases in Quality by 3 when there are less than 5 days" do
-        bakstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 3, 15)
-        GildedRose.new([bakstage_passes]).update_quality()
-        expect(bakstage_passes.quality).to eq(18)
+        backstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', rand(4) + 1, 15)
+        GildedRose.new([backstage_passes]).update_quality
+        expect(backstage_passes.quality).to eq(18)
+        # (1..4).each do |s|
+        #   backstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', s, 15)
+        #   GildedRose.new([backstage_passes]).update_quality
+        #   expect(backstage_passes.quality).to eq(18)
+        # end
       end
     end
   end
