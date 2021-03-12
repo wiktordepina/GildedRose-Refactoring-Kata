@@ -38,6 +38,14 @@ describe GildedRose do
         expect(aged_brie.quality).to eq(17)
       end
     end
+
+    context "Backstage passes" do
+      it "increases in Quality by 2 when there are 10 days or less" do
+        aged_brie = Item.new('Backstage passes to a TAFKAL80ETC concert', 10, 15)
+        GildedRose.new([aged_brie]).update_quality()
+        expect(aged_brie.quality).to eq(17)
+      end
+    end
   end
 end
 
