@@ -40,10 +40,34 @@ describe GildedRose do
     end
 
     context "Backstage passes" do
-      it "increases in Quality by 2 when there are 10 days or less" do
-        aged_brie = Item.new('Backstage passes to a TAFKAL80ETC concert', 10, 15)
-        GildedRose.new([aged_brie]).update_quality()
-        expect(aged_brie.quality).to eq(17)
+      it "increases in Quality by 1 when there are 11 days left" do
+        bakstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 11, 15)
+        GildedRose.new([bakstage_passes]).update_quality()
+        expect(bakstage_passes.quality).to eq(16)
+      end
+
+      it "increases in Quality by 2 when there are 10-6 days left" do
+        bakstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 10, 15)
+        GildedRose.new([bakstage_passes]).update_quality()
+        expect(bakstage_passes.quality).to eq(17)
+      end
+
+      it "increases in Quality by 2 when there are 6 days left" do
+        bakstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 6, 15)
+        GildedRose.new([bakstage_passes]).update_quality()
+        expect(bakstage_passes.quality).to eq(17)
+      end
+
+      it "increases in Quality by 3 when there are 5 days" do
+        bakstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 5, 15)
+        GildedRose.new([bakstage_passes]).update_quality()
+        expect(bakstage_passes.quality).to eq(18)
+      end
+
+      it "increases in Quality by 3 when there are less than 5 days" do
+        bakstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 3, 15)
+        GildedRose.new([bakstage_passes]).update_quality()
+        expect(bakstage_passes.quality).to eq(18)
       end
     end
   end
