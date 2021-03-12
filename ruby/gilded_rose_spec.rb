@@ -19,12 +19,14 @@ describe GildedRose do
         GildedRose.new([aged_brie]).update_quality()
         expect(aged_brie.sell_in).to eq(9)
       end
+
+      it "never increases the quality to over 50" do
+        aged_brie = Item.new('Aged Brie', 10, 50)
+        GildedRose.new([aged_brie]).update_quality()
+        expect(aged_brie.quality).to eq(50)
+      end
     end
-
   end
-
-
-
 end
 
 # - All items have a SellIn value which denotes the number of days we have to sell the item
