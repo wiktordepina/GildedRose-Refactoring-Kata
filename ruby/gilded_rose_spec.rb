@@ -82,6 +82,17 @@ describe GildedRose do
         expect(backstage_passes.quality).to eq(0)
       end
     end
+
+    describe 'Conjured Items' do
+      it 'degrades in quality twice as fast as a normal item before expiry' do
+        conjured_item = Item.new('Conjured', 10, 4)
+        gilded_rose = GildedRose.new([conjured_item])
+
+        gilded_rose.update_quality
+
+        expect(conjured_item.quality).to eq(2)
+      end
+    end
   end
 end
 
