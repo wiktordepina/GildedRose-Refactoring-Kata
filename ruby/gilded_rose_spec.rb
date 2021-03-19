@@ -70,8 +70,14 @@ describe GildedRose do
         expect(backstage_passes.quality).to eq(18)
       end
 
-      it 'drops Quality to 0 after the concert' do
+      it 'drops Quality to 0 on the day of the concert' do
         backstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 0, 20)
+        GildedRose.new([backstage_passes]).update_quality
+        expect(backstage_passes.quality).to eq(0)
+      end
+
+      it 'drops Quality to 0 after the concert' do
+        backstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', -1, 20)
         GildedRose.new([backstage_passes]).update_quality
         expect(backstage_passes.quality).to eq(0)
       end
