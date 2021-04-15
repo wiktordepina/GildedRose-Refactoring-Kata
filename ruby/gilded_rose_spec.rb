@@ -40,6 +40,12 @@ describe GildedRose do
     end
 
     context 'Backstage passes' do
+      it 'never increases Quality to over 50' do
+        backstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 11, 50)
+        gilded_rose = GildedRose.new([backstage_passes])
+        expect { gilded_rose.update_quality }.not_to change(backstage_passes, :quality).from(50)
+      end
+
       it 'increases in Quality by 1 when there are 11 days left to the concert' do
         backstage_passes = Item.new('Backstage passes to a TAFKAL80ETC concert', 11, 15)
         GildedRose.new([backstage_passes]).update_quality
