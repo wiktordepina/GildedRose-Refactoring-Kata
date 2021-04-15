@@ -99,16 +99,27 @@ describe GildedRose do
       end
     end
 
-    describe 'Conjured Items' do
-      it 'degrades in quality twice as fast as a normal item before expiry' do
-        conjured_item = Item.new('Conjured', 10, 4)
-        gilded_rose = GildedRose.new([conjured_item])
+    describe 'normal item' do
 
-        gilded_rose.update_quality
+      it 'decreases in quality at the end of each day' do
+        normal_item = Item.new('Some item', 10, 4)
+        gilded_rose = GildedRose.new([normal_item])
 
-        expect(conjured_item.quality).to eq(2)
+        expect { gilded_rose.update_quality }.to change(normal_item, :quality).by(-1)
       end
+
     end
+
+    # describe 'Conjured Items' do
+    #   it 'degrades in quality twice as fast as a normal item before expiry' do
+    #     conjured_item = Item.new('Conjured', 10, 4)
+    #     gilded_rose = GildedRose.new([conjured_item])
+    #
+    #     gilded_rose.update_quality
+    #
+    #     expect(conjured_item.quality).to eq(2)
+    #   end
+    # end
   end
 end
 
