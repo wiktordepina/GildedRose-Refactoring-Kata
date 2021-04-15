@@ -108,6 +108,35 @@ describe GildedRose do
         expect { gilded_rose.update_quality }.to change(normal_item, :quality).by(-1)
       end
 
+      it 'decreases sell by date at the end of each day' do
+        normal_item = Item.new('Some item', 10, 4)
+        gilded_rose = GildedRose.new([normal_item])
+
+        expect { gilded_rose.update_quality }.to change(normal_item, :sell_in).by(-1)
+      end
+
+      it 'degrades quality twice as fast after sell by date has passed when quality is > 0' do
+        normal_item = Item.new('Some item', -1, 4)
+        gilded_rose = GildedRose.new([normal_item])
+
+        expect { gilded_rose.update_quality }.to change(normal_item, :quality).by(-2)
+      end
+
+      it 'degrades quality twice as fast on the sell by date when quality is > 0' do
+        normal_item = Item.new('Some item', 0, 4)
+        gilded_rose = GildedRose.new([normal_item])
+
+        expect { gilded_rose.update_quality }.to change(normal_item, :quality).by(-2)
+      end
+
+      it "doesn't change the quality after sell by date has passed and quality is = 0" do
+        normal_item = Item.new('Some item', -1, 0)
+        gilded_rose = GildedRose.new([normal_item])
+
+        expect { gilded_rose.update_quality }.not_to change(normal_item, :quality).from(0)
+      end
+
+
     end
 
     # describe 'Conjured Items' do
