@@ -83,6 +83,22 @@ describe GildedRose do
       end
     end
 
+    describe 'Sulfuras' do
+      it 'never has to be sold' do
+        sulfuras = Item.new('Sulfuras, Hand of Ragnaros', 10, 4)
+        gilded_rose = GildedRose.new([sulfuras])
+
+        expect { gilded_rose.update_quality }.not_to change(sulfuras, :sell_in).from(10)
+      end
+
+      it 'never decreases in Quality' do
+        sulfuras = Item.new('Sulfuras, Hand of Ragnaros', 10, 4)
+        gilded_rose = GildedRose.new([sulfuras])
+
+        expect { gilded_rose.update_quality }.not_to change(sulfuras, :quality).from(4)
+      end
+    end
+
     describe 'Conjured Items' do
       it 'degrades in quality twice as fast as a normal item before expiry' do
         conjured_item = Item.new('Conjured', 10, 4)
