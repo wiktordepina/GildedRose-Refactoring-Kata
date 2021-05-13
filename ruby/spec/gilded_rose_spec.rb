@@ -1,4 +1,5 @@
-require File.join(File.dirname(__FILE__), 'gilded_rose')
+require 'gilded_rose'
+require 'spec_helper'
 
 describe GildedRose do
 
@@ -105,7 +106,7 @@ describe GildedRose do
       end
     end
 
-    describe 'normal item' do
+    describe 'Regular item' do
 
       it 'decreases in quality at the end of each day' do
         normal_item = Item.new('Some item', 10, 4)
