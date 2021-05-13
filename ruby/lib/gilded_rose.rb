@@ -84,4 +84,8 @@ class Item
   def decrease_quality(by: 1)
     @quality -= 1
   end
+
+  def max_quality?
+    @quality >= 50
+  end
 end
