@@ -29,7 +29,7 @@ class GildedRose
             end
           end
           if item.sell_in < 6
-            if item.quality < 50
+            unless item.max_quality?
               item.increase_quality
             end
           end
