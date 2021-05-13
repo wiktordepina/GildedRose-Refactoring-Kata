@@ -45,7 +45,7 @@ class GildedRose
         if item.name != "Backstage passes to a TAFKAL80ETC concert"
           if item.quality > 0
             if item.name != "Sulfuras, Hand of Ragnaros"
-              item.quality = item.quality - 1
+              item.decrease_quality
             end
           end
         else
