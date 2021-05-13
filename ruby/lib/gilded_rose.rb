@@ -52,9 +52,7 @@ class GildedRose
           item.quality = 0
         end
       else
-        unless item.max_quality?
-          item.increase_quality
-        end
+        item.increase_quality
       end
     end
   end
