@@ -24,7 +24,7 @@ class GildedRose
         item.increase_quality
         if item.name == "Backstage passes to a TAFKAL80ETC concert"
           if item.sell_in < 11
-            if item.quality < 50
+            unless item.max_quality?
               item.increase_quality
             end
           end
