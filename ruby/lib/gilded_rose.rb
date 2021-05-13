@@ -25,7 +25,7 @@ class GildedRose
         if item.name == "Backstage passes to a TAFKAL80ETC concert"
           if item.sell_in < 11
             if item.quality < 50
-              item.quality = item.quality + 1
+              item.increase_quality
             end
           end
           if item.sell_in < 6
@@ -75,5 +75,9 @@ class Item
 
   def expired?
     @sell_in < 0
+  end
+
+  def increase_quality(by: 1)
+    @quality += 1
   end
 end
