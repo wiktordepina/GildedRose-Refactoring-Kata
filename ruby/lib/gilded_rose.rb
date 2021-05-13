@@ -78,6 +78,8 @@ class Item
   end
 
   def increase_quality(by: 1)
+    return if max_quality?
+
     @quality += 1
   end
 
