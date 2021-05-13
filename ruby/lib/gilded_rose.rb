@@ -80,4 +80,8 @@ class Item
   def increase_quality(by: 1)
     @quality += 1
   end
+
+  def decrease_quality(by: 1)
+    @quality -= 1
+  end
 end
