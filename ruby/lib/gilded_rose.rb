@@ -21,7 +21,7 @@ class GildedRose
       end
     else
       if item.quality < 50
-        item.quality = item.quality + 1
+        item.increase_quality
         if item.name == "Backstage passes to a TAFKAL80ETC concert"
           if item.sell_in < 11
             if item.quality < 50
