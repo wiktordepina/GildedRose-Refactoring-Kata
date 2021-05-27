@@ -14,10 +14,8 @@ class GildedRose
 
   def update_quality_of(item)
     if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
-      if item.quality > 0
-        if item.name != "Sulfuras, Hand of Ragnaros"
-          item.decrease_quality
-        end
+      if item.name != "Sulfuras, Hand of Ragnaros"
+        item.decrease_quality
       end
     else
       item.increase_quality
@@ -76,6 +74,8 @@ class Item
   end
 
   def decrease_quality(by: 1)
+    return if @quality <= 0
+
     @quality -= 1
   end
 
