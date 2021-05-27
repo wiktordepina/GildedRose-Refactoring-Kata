@@ -35,10 +35,8 @@ class GildedRose
     if item.expired?
       if item.name != "Aged Brie"
         if item.name != "Backstage passes to a TAFKAL80ETC concert"
-          if item.quality > 0
-            if item.name != "Sulfuras, Hand of Ragnaros"
-              item.decrease_quality
-            end
+          if item.name != "Sulfuras, Hand of Ragnaros"
+            item.decrease_quality
           end
         else
           item.quality = 0
