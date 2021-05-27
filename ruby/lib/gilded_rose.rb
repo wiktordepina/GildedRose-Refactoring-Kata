@@ -13,12 +13,7 @@ class GildedRose
   private
 
   def update_quality_of(item)
-    #if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
-    unless ["Aged Brie", "Backstage passes to a TAFKAL80ETC concert"].include?(item.name)
-      if item.name != "Sulfuras, Hand of Ragnaros"
-        item.decrease_quality
-      end
-    else
+    if ["Aged Brie", "Backstage passes to a TAFKAL80ETC concert"].include?(item.name)
       item.increase_quality
       if item.name == "Backstage passes to a TAFKAL80ETC concert"
         if item.sell_in < 11
@@ -27,6 +22,10 @@ class GildedRose
         if item.sell_in < 6
           item.increase_quality
         end
+      end
+    else
+      if item.name != "Sulfuras, Hand of Ragnaros"
+        item.decrease_quality
       end
     end
 
