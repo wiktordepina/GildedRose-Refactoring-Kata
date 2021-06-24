@@ -46,7 +46,7 @@ class GildedRose
         if item.name == BACKSTAGE_PASSES
           item.quality = 0
         else
-          if item.name != SULFURAS
+          unless item.name == SULFURAS
             item.decrease_quality
           end
         end
