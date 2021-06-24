@@ -38,16 +38,15 @@ class GildedRose
       item.sell_in = item.sell_in - 1
     end
 
-    if item.expired?
-      if item.name == AGED_BRIE
-          item.increase_quality if item.expired?
+
+    if item.name == AGED_BRIE
+        item.increase_quality if item.expired?
+    else
+      if item.name == BACKSTAGE_PASSES
+        item.quality = 0 if item.expired?
       else
-        if item.name == BACKSTAGE_PASSES
-          item.quality = 0 if item.expired?
-        else
-          unless item.name == SULFURAS
-            item.decrease_quality if item.expired?
-          end
+        unless item.name == SULFURAS
+          item.decrease_quality if item.expired?
         end
       end
     end
