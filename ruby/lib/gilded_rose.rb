@@ -44,12 +44,13 @@ class GildedRose
     else
       if item.name == BACKSTAGE_PASSES
         item.quality = 0 if item.expired?
-      else
-        unless item.name == SULFURAS
-          item.decrease_quality if item.expired?
-        end
       end
     end
+
+    if item.normal_item?
+      item.decrease_quality if item.expired?
+    end
+
   end
 end
 
