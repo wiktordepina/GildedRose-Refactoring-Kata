@@ -21,11 +21,11 @@ class GildedRose
     if item.name == BACKSTAGE_PASSES
       item.increase_quality
 
-      if item.name == BACKSTAGE_PASSES && item.sell_in < 11
+      if item.sell_in < 11
         item.increase_quality
       end
 
-      if item.name == BACKSTAGE_PASSES && item.sell_in < 6
+      if item.sell_in < 6
         item.increase_quality
       end
     end
