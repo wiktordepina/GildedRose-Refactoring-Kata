@@ -29,16 +29,16 @@ class GildedRose
         item.increase_quality
       end
 
-
     else
-      if item.name != SULFURAS
+      unless item.name == SULFURAS
         item.decrease_quality
       end
     end
 
-    if item.name != SULFURAS
+    unless item.name == SULFURAS
       item.sell_in = item.sell_in - 1
     end
+
     if item.expired?
       if item.name != AGED_BRIE
         if item.name != BACKSTAGE_PASSES
