@@ -43,12 +43,12 @@ class GildedRose
       if item.name == AGED_BRIE
         item.increase_quality
       else
-        if item.name != BACKSTAGE_PASSES
+        if item.name == BACKSTAGE_PASSES
+          item.quality = 0
+        else
           if item.name != SULFURAS
             item.decrease_quality
           end
-        else
-          item.quality = 0
         end
       end
     end
