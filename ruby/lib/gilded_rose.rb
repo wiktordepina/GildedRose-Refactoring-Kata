@@ -18,7 +18,7 @@ class GildedRose
 
 
   def update_quality_of(item)
-    if item.name == AGED_BRIE || item.name == BACKSTAGE_PASSES
+    if item.name == BACKSTAGE_PASSES
       item.increase_quality
 
       if item.name == BACKSTAGE_PASSES && item.sell_in < 11
@@ -29,6 +29,8 @@ class GildedRose
         item.increase_quality
       end
     end
+
+    item.increase_quality if item.name == AGED_BRIE
 
     unless item.name == SULFURAS
       item.sell_in = item.sell_in - 1
