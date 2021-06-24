@@ -40,7 +40,9 @@ class GildedRose
     end
 
     if item.expired?
-      if item.name != AGED_BRIE
+      if item.name == AGED_BRIE
+        item.increase_quality
+      else
         if item.name != BACKSTAGE_PASSES
           if item.name != SULFURAS
             item.decrease_quality
@@ -48,8 +50,6 @@ class GildedRose
         else
           item.quality = 0
         end
-      else
-        item.increase_quality
       end
     end
   end
