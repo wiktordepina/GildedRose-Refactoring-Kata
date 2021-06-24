@@ -28,10 +28,10 @@ class GildedRose
       if item.name == BACKSTAGE_PASSES && item.sell_in < 6
         item.increase_quality
       end
-    else
-      unless item.name == SULFURAS
-        item.decrease_quality
-      end
+    end
+
+    if item.normal_item?
+      item.decrease_quality
     end
 
     unless item.name == SULFURAS
@@ -84,5 +84,9 @@ class Item
 
   def max_quality?
     @quality >= 50
+  end
+
+  def normal_item?
+    [GildedRose::AGED_BRIE, GildedRose::BACKSTAGE_PASSES, GildedRose::SULFURAS].none? { |name| name == @name }
   end
 end
