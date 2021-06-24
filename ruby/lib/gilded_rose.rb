@@ -30,14 +30,9 @@ class GildedRose
       end
     end
 
-    if item.normal_item?
-      item.decrease_quality
-    end
-
     unless item.name == SULFURAS
       item.sell_in = item.sell_in - 1
     end
-
 
     if item.name == AGED_BRIE
         item.increase_quality if item.expired?
@@ -48,9 +43,9 @@ class GildedRose
     end
 
     if item.normal_item?
+      item.decrease_quality
       item.decrease_quality if item.expired?
     end
-
   end
 end
 
