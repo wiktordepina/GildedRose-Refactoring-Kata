@@ -17,27 +17,21 @@ class GildedRose
   private
 
   def update_quality_of(item)
-    return if item.name == SULFURAS
 
-    if item.name == BACKSTAGE_PASSES
+    case item.name
+    when SULFURAS
+    when BACKSTAGE_PASSES
       item.increase_quality
       item.increase_quality if item.sell_in < 11
       item.increase_quality if item.sell_in < 6
-    end
-
-    item.increase_quality if item.name == AGED_BRIE
-
-    item.sell_in = item.sell_in - 1
-
-    if item.name == AGED_BRIE
-        item.increase_quality if item.expired?
-    end
-
-    if item.name == BACKSTAGE_PASSES
+      item.sell_in = item.sell_in - 1
       item.quality = 0 if item.expired?
-    end
-
-    if item.normal_item?
+    when AGED_BRIE
+      item.increase_quality
+      item.sell_in = item.sell_in - 1
+      item.increase_quality if item.expired?
+    else
+      item.sell_in = item.sell_in - 1
       item.decrease_quality
       item.decrease_quality if item.expired?
     end
