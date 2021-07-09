@@ -22,9 +22,7 @@ class GildedRose
     when BACKSTAGE_PASSES
       BackstagePasses.new(item).update_quality
     when AGED_BRIE
-      item.increase_quality
-      item.sell_in = item.sell_in - 1
-      item.increase_quality if item.expired?
+      AgedBrie.new(item).update_quality
     else
       item.sell_in = item.sell_in - 1
       item.decrease_quality
@@ -85,4 +83,19 @@ class BackstagePasses
     item.sell_in = item.sell_in - 1
     item.quality = 0 if item.expired?
   end
+end
+
+class AgedBrie
+  def initialize(item)
+    @item = item
+  end
+
+  attr_reader :item
+
+  def update_quality
+    item.increase_quality
+    item.sell_in = item.sell_in - 1
+    item.increase_quality if item.expired?
+  end
+
 end
