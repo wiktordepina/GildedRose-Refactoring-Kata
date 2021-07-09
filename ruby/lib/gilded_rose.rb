@@ -4,7 +4,7 @@ class GildedRose
     @items = items
   end
 
-  def update_quality()
+  def update_quality
     @items.each do |item|
       update_quality_of(item)
     end
@@ -16,8 +16,9 @@ class GildedRose
 
   private
 
-
   def update_quality_of(item)
+    return if item.name == SULFURAS
+
     if item.name == BACKSTAGE_PASSES
       item.increase_quality
       item.increase_quality if item.sell_in < 11
@@ -26,9 +27,7 @@ class GildedRose
 
     item.increase_quality if item.name == AGED_BRIE
 
-    unless item.name == SULFURAS
-      item.sell_in = item.sell_in - 1
-    end
+    item.sell_in = item.sell_in - 1
 
     if item.name == AGED_BRIE
         item.increase_quality if item.expired?
@@ -37,7 +36,6 @@ class GildedRose
     if item.name == BACKSTAGE_PASSES
       item.quality = 0 if item.expired?
     end
-
 
     if item.normal_item?
       item.decrease_quality
