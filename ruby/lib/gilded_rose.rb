@@ -32,11 +32,12 @@ class GildedRose
 
     if item.name == AGED_BRIE
         item.increase_quality if item.expired?
-    else
-      if item.name == BACKSTAGE_PASSES
-        item.quality = 0 if item.expired?
-      end
     end
+
+    if item.name == BACKSTAGE_PASSES
+      item.quality = 0 if item.expired?
+    end
+
 
     if item.normal_item?
       item.decrease_quality
