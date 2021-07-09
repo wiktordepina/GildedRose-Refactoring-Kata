@@ -17,15 +17,10 @@ class GildedRose
   private
 
   def update_quality_of(item)
-
     case item.name
     when SULFURAS
     when BACKSTAGE_PASSES
-      item.increase_quality
-      item.increase_quality if item.sell_in < 11
-      item.increase_quality if item.sell_in < 6
-      item.sell_in = item.sell_in - 1
-      item.quality = 0 if item.expired?
+      BackstagePasses.new(item).update_quality
     when AGED_BRIE
       item.increase_quality
       item.sell_in = item.sell_in - 1
@@ -73,5 +68,21 @@ class Item
 
   def normal_item?
     [GildedRose::AGED_BRIE, GildedRose::BACKSTAGE_PASSES, GildedRose::SULFURAS].none? { |name| name == @name }
+  end
+end
+
+class BackstagePasses
+  def initialize(item)
+    @item = item
+  end
+
+  attr_reader :item
+
+  def update_quality
+    item.increase_quality
+    item.increase_quality if item.sell_in < 11
+    item.increase_quality if item.sell_in < 6
+    item.sell_in = item.sell_in - 1
+    item.quality = 0 if item.expired?
   end
 end
